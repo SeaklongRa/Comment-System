@@ -1,18 +1,27 @@
 <template>
   <v-container>
     <h1>Hello</h1>
-    <comment-input />
+    <comment-section :comments="comments" @send="send" />
   </v-container>
 </template>
 
 <script>
-import CommentInput from '../components/comments/comment-input.vue'
+import CommentSection from '../components/comments/comment-section.vue'
 
   export default {
     name: 'HomePage',
 
     components: {
-      CommentInput
+      CommentSection
     },
+    methods: {
+      send (content) {
+        this.comments.push(content)
+      }
+    },
+    data: () => ({
+      comments: [
+      ]
+    })
   }
 </script>
