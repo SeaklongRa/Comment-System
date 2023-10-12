@@ -1,7 +1,7 @@
 <template>
   <div>
     <comment-body :comment="comment" @send="send" />
-    <div class="ml-5">
+    <div :style="{margin: number + 'px'}">
       <comment-body v-for="reply in replies" :comment="reply" @send="send" :key="reply.id" />
     </div>
   </div>
@@ -19,11 +19,14 @@ export default {
     }
   },
   data: () => ({
-    replies: []
+    replies: [],
+    number: 0
   }),
   methods: {
     send(content) {
       this.replies.push(content)
+      console.log('replies', this.replies)
+      this.number += 20
     }
   }
 }
