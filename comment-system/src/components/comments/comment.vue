@@ -1,8 +1,8 @@
 <template>
   <div>
     <comment-body :comment="comment" @send="send" />
-    <div :style="{margin: number + 'px'}">
-      <comment-body v-for="reply in replies" :comment="reply" @send="send" :key="reply.id" />
+    <div>
+      <comment-body v-for="reply in replies" :comment="reply" @send="send" :key="reply.id" :countReply="numbers[replies.length - 1]" />
     </div>
   </div>
 </template>
@@ -20,13 +20,14 @@ export default {
   },
   data: () => ({
     replies: [],
-    number: 0
+    numbers: []
   }),
   methods: {
     send(content) {
       this.replies.push(content)
-      console.log('replies', this.replies)
-      this.number += 20
+      console.log('replies', this.replies.length)
+      this.numbers.push(20 * this.replies.length)
+      console.log(this.numbers[this.replies.length - 1], 'check value')
     }
   }
 }

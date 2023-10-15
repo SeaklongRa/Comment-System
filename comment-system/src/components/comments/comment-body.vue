@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div :style="{margin: countReply + 'px'}">
       <p v-html="comment"></p>
       <v-btn v-if="!replying" @click="replying = true">Reply</v-btn>
     </div>
@@ -17,11 +17,18 @@ export default {
     comment: {
       required: true,
       type: String
+    },
+    countReply: {
+      required: false,
+      type: Number,
     }
   },
   data: () => ({
-    replying: false
-  })
+    replying: false,
+    numbers: 0
+  }),
+  computed: {
+  }
 }
 </script>
 
